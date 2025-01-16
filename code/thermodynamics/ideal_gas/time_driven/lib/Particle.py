@@ -21,9 +21,7 @@ class Particle(MovingObject):
         color: str = "#FF0000",
         opacity: float = 1.0,
     ) -> None:
-        first_bbox_pts = [pos[0] - rad, pos[1] - rad, pos[2] - rad]
-        last_bbox_pts = [pos[0] + rad, pos[1] + rad, pos[2] + rad]
-        bbox_pts: npdarr = np.array([first_bbox_pts, last_bbox_pts])
+        bbox_pts: npdarr = np.array([pos - rad, pos + rad])
         super().__init__(pos, vel, bbox_pts, color, opacity)
 
         self.rad: float = rad
