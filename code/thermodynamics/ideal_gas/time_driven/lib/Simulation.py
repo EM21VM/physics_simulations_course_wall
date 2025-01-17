@@ -1,9 +1,10 @@
 from enum import Enum
 
+import sys as sys
 import numpy as np
 from lib.AABB import SweepPruneSystem
 from lib.constants import ZERO_VEC, Axes, npdarr, npiarr
-from lib.functions import distance
+from lib.functions import distance,calc_distance
 from lib.Object import Object
 from lib.Particle import Particle, elastic_collision, untangle_spheres
 from lib.Wall import Wall
@@ -149,6 +150,14 @@ class Simulation:
                     # self.collision_matrix[time, j] = 1
             if isinstance(obj_1, Particle) and isinstance(obj_2, Wall):
                 print("AHHHHHHH Ich wurde berührt")
+                # p = obj_1.pos
+                # q = obj_2.pos
+                # u = obj_2.dir_vec
+                # distance Formular for
+                d = calc_distance(obj_1.pos, obj_2.pos, obj_2.dir_vec)
+                print(d)
+                if d <= obj_1.rad:
+                    sys.exit("ICH WURDE GETROFFEN")
                 
     def update_data_matrices(self) -> None:
         for p_idx, particle in enumerate(self.particle_list):

@@ -5,6 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from lib.constants import ZERO_VEC, npdarr
 from lib.Object import Object
+from lib.functions import normalize
 
 
 class Wall(Object):
@@ -23,6 +24,7 @@ class Wall(Object):
         # self.depth: float = pos[2] - end_pos[2]
         self.end_pos = end_pos
         self.pos = pos
+        self.dir_vec = end_pos - pos
         first_bbox_x_pt = pos[0] if pos[0] < end_pos[0] else end_pos[0]
         first_bbox_y_pt = pos[1] if pos[1] < end_pos[1] else end_pos[1]
         first_bbox_z_pt = pos[2] if pos[2] < end_pos[2] else end_pos[2]
