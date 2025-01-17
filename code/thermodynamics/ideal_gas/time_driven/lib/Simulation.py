@@ -6,6 +6,7 @@ from lib.constants import ZERO_VEC, Axes, npdarr, npiarr
 from lib.functions import distance
 from lib.Object import Object
 from lib.Particle import Particle, elastic_collision, untangle_spheres
+from lib.Wall import Wall
 from tqdm import tqdm
 
 
@@ -146,7 +147,9 @@ class Simulation:
                     obj_1.vel, obj_2.vel = elastic_collision(obj_1, obj_2)
                     # self.collision_matrix[time, i] = 1
                     # self.collision_matrix[time, j] = 1
-
+            if isinstance(obj_1, Particle) and isinstance(obj_2, Wall):
+                print("AHHHHHHH Ich wurde berührt")
+                
     def update_data_matrices(self) -> None:
         for p_idx, particle in enumerate(self.particle_list):
             self.pos_matrix[self.step, p_idx] = particle.pos

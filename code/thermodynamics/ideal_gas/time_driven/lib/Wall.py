@@ -18,10 +18,20 @@ class Wall(Object):
         opacity: float = 1.0,
     ) -> None:
         print(f"start_pos: {pos}")
-        self.width: float = abs(pos[0] - end_pos[0])
-        self.height: float = abs(pos[1] - end_pos[1])
-        first_bbox_pts = np.array(pos)
-        last_bbox_pts = np.array([pos[0] + self.width, pos[1] + self.height, pos[2]])
+        # self.width: float = pos[0] - end_pos[0]
+        # self.height: float = pos[1] - end_pos[1]
+        # self.depth: float = pos[2] - end_pos[2]
+        self.end_pos = end_pos
+        self.pos = pos
+        first_bbox_x_pt = pos[0] if pos[0] < end_pos[0] else end_pos[0]
+        first_bbox_y_pt = pos[1] if pos[1] < end_pos[1] else end_pos[1]
+        first_bbox_z_pt = pos[2] if pos[2] < end_pos[2] else end_pos[2]
+        first_bbox_pts = [first_bbox_x_pt, first_bbox_y_pt, first_bbox_z_pt]
+        
+        last_bbox_x_pt = pos[0] if pos[0] > end_pos[0] else end_pos[0]
+        last_bbox_y_pt = pos[1] if pos[1] > end_pos[1] else end_pos[1]
+        last_bbox_z_pt = pos[2] if pos[2] > end_pos[2] else end_pos[2]
+        last_bbox_pts = [last_bbox_x_pt, last_bbox_y_pt, last_bbox_z_pt]
         bbox_pts: npdarr = np.array([first_bbox_pts, last_bbox_pts])
         super().__init__(pos, bbox_pts=bbox_pts, color=color, opacity=opacity)
 
