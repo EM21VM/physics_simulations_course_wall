@@ -41,8 +41,8 @@ class Wall(Object):
 if __name__ == "__main__":
     print("Testing the Wall class")
     wal = Wall(
-        pos=np.array([1, 1, 0]),
-        end_pos=np.array([2, 2, 0]),
+        pos=np.array([1, 3, 0]),
+        end_pos=np.array([2, 0, 0]),
         color="#FF0000",
         opacity=1,
     )

@@ -156,8 +156,10 @@ class Simulation:
                 # distance Formular for
                 d = calc_distance(obj_1.pos, obj_2.pos, obj_2.dir_vec)
                 print(d)
-                if d <= obj_1.rad:
-                    sys.exit("ICH WURDE GETROFFEN")
+                if d <= obj_1.rad * 2:
+                    # sys.exit("ICH WURDE GETROFFEN")
+                    obj_1.vel = np.array([0,0,0])
+                    
                 
     def update_data_matrices(self) -> None:
         for p_idx, particle in enumerate(self.particle_list):
