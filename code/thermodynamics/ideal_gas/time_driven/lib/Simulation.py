@@ -148,7 +148,7 @@ class Simulation:
                 # u = obj_2.normal_vec
                 # distance Formular for
                 d = calc_distance(obj_1.pos, obj_2.pos, obj_2.normal_vec)
-                print("Distanz zum Punkt: " + d)
+                print("Distanz zum Punkt: " + str(d))
                 if d <= obj_1.rad * 2:
                     # sys.exit("ICH WURDE GETROFFEN")
                     print("ICH TREFFE DIE WAND AHHHHHH")

@@ -43,7 +43,7 @@ def wall_collision(p1: Particle, w1: Wall) -> npdarr:
     v = p1.vel
     n = w1.normal_vec
     # print("Vel: " + str(v) + "Normalvector: " + str(n) + "NEW Vel: " + str(v - skalarproduct(v,n) * n))
-    return np.array(v - v.dot(n) * n)
+    return np.array(v - 2 * v.dot(n) * n)
 
 
 def get_bbox_pts(wall: Wall):
@@ -68,7 +68,11 @@ def get_bbox_pts(wall: Wall):
         first_bbox_z_pt = wall.plains_vec[2]
     else:
         first_bbox_z_pt = wall.plains_vec_2[2]
-    first_bbox_pts = [first_bbox_x_pt - offset, first_bbox_y_pt - offset, first_bbox_z_pt - offset]
+    first_bbox_pts = [
+        first_bbox_x_pt - offset,
+        first_bbox_y_pt - offset,
+        first_bbox_z_pt - offset,
+    ]
 
     if wall.pos[0] > wall.plains_vec[0] and wall.pos[0] > wall.plains_vec_2[0]:
         last_bbox_x_pt = wall.pos[0]
@@ -90,7 +94,11 @@ def get_bbox_pts(wall: Wall):
         last_bbox_z_pt = wall.plains_vec[2]
     else:
         last_bbox_z_pt = wall.plains_vec_2[2]
-    last_bbox_pts = [last_bbox_x_pt + offset, last_bbox_y_pt + offset, last_bbox_z_pt + offset]
+    last_bbox_pts = [
+        last_bbox_x_pt + offset,
+        last_bbox_y_pt + offset,
+        last_bbox_z_pt + offset,
+    ]
     return np.array([first_bbox_pts, last_bbox_pts])
 
 

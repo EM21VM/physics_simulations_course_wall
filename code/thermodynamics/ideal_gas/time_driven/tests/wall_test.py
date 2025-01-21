@@ -7,7 +7,7 @@ from matplotlib.patches import Circle, Rectangle
 from matplotlib.animation import FuncAnimation
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from lib.Particle import Particle, plot3D
+from lib.Particle import Particle
 from lib.Simulation import Boundary, Simulation
 from lib.Wall import Wall, plotWall
 from lib.constants import npdarr, Axes
@@ -21,8 +21,8 @@ if __name__ == "__main__":
         sides=[L, L, L],
         boundaries=[Boundary.WALL, Boundary.WALL, Boundary.WALL],
     )
-    pos = np.array([L / 2, L / 2, L / 2])
-    vel = np.array([10, 10, 10])
+    pos = np.array([0, 0, 0])
+    vel = np.array([0, -10, 0])
     rad = 10
     par = Particle(
         pos=pos + rad,
@@ -59,7 +59,6 @@ if __name__ == "__main__":
     ax.set_aspect("equal")
     frames_label = ax.annotate(f"frame: 0/{simulation.num_steps:04d}", xy=(10, L - 10))
     overlaps_label = ax.annotate("overlaps: []", (20, 20))
-    ax.plot(par.pos[0], par.pos[1], par.pos[2], markersize=par.rad)
     plotWall(wal, ax, x_min, x_max, y_min, y_max, z_min, z_max)
 
     theta = np.linspace(0, 2 * np.pi, 100)
